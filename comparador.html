@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- CSS only -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+  <body>
+      <main>
+
+       
+      <div  class="formulario">    
+         <form class="formulario-d" action="" id="formulario">
+
+          <!-- Grupo: Nombre -->
+          <div class="formulario__grupo" id="grupo__nombre">
+            <label for="nombre" class="formulario__label">Nombre del banco A</label>
+             <div class="formulario__grupo-input">
+               <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Jony Melavo">
+               <i class=" formulario__validacion-estado fas fa-times-circle"></i>
+             </div>
+              <p class="formulario__input-error">Solo use letras, nada de numeros o signos</p>
+          </div>
+
+        <!-- Grupo: Monto -->
+        <div class="formulario__grupo" id="grupo__monto">
+          <label for="monto" class="formulario__label">Monto del credito</label>
+           <div class="formulario__grupo-input">
+             <input type="text" class="formulario__input" name="monto" id="monto" placeholder="$1000">
+             <i class=" formulario__validacion-estado fas fa-times-circle"></i>
+           </div>
+            <p class="formulario__input-error">El monto maximo de su credito puede ser $100.000.000 y un minimo de $1.000.000 (Solo numeros)</p>
+        </div>
+
+         <!-- Grupo: Numero de cuotas -->
+         <div class="formulario__grupo" id="grupo__ncuota">
+            <label for="ncuota" class="formulario__label">Numero de cuotas</label>
+             <div class="formulario__grupo-input">
+               <input type="text" class="formulario__input" name="ncuota" id="ncuota" placeholder="$1000">
+               <i class=" formulario__validacion-estado fas fa-times-circle"></i>
+             </div>
+              <p class="formulario__input-error">Su numero de cuotas debe estar entre las 2 a 48 cuotas</p>
+          </div>
+
+           <!-- Grupo: Seguro de desgravamen -->
+        <div class="formulario__grupo" id="grupo__seguro">
+            <label for="seguro" class="formulario__label">Seguro de desgravamen</label>
+             <div class="formulario__grupo-input">
+               <input type="text" class="formulario__input" name="seguro" id="seguro" placeholder="$1000">
+               <i class=" formulario__validacion-estado fas fa-times-circle"></i>
+             </div>
+              <p class="formulario__input-error">El seguro de desgravamen debe ser mayor o igual a $0</p>
+          </div>
+
+                  <!-- Grupo: Cuotas -->
+        <div class="formulario__grupo" id="grupo__cuota">
+          <label for="cuota" class="formulario__label">Cuota mensual</label>
+           <div class="formulario__grupo-input">
+             <input type="text" class="formulario__input" name="cuota" id="cuota" placeholder="$1000">
+             <i class=" formulario__validacion-estado fas fa-times-circle"></i>
+           </div>
+            <p class="formulario__input-error">La cuota  mensual debe ser mayor a la suma de su monto mas el seguro, y todo esto dividido en el numero de cuotas</p>
+            
+        </div>
+
+        <!-- IDEA: terminos y condiciones -->
+        <div class="formulario__grupo" id="grupo__terminos">
+          <label class="formulario__label">
+          <input type="checkbox" class="formulario__checkbox"  name="terminos" id="terminos">
+          Completado
+        </label>
+        </div>
+        <div class="formulario__mensaje" id="formulario__mensaje">
+          <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+        </div>
+  
+        <div class="formulario__grupo formulario__grupo-btn-enviar">
+          <button type="submit" class="formulario__btn" onclick="CAE()" >CAE</button>
+          <label class="formulario__mensaje-exito" id="formulario__mensaje-exito"> Valor CAE: </label><br>
+        </div>
+
+        <script>
+          function CAE(){
+          var monto= document.getElementById('monto').value;   
+          var cuotas= document.getElementById('cuota').value;   
+          var ncuotas= document.getElementById('ncuota').value;   
+          var desg = document.getElementById('seguro').value;   
+          var newcuota= cuotas-(desg/ncuotas);
+          var tasa= formulajs.RATE(ncuotas, newcuota, (monto)*-1);
+          var cae= tasa*1200;
+          localStorage.setItem('cae',cae.toFixed(2));
+          document.getElementById('formulario__mensaje-exito').innerHTML
+                  = 'El valor CAE: ' + cae.toFixed(2) + '%';
+          }
+      </script>
+      </form>
+
+
+      <form class="formulario-i" action="" id="formulario1">
+
+          <!-- Grupo: Nombre -->
+          <div class="formulario__grupo" id="grupo__nombre1">
+            <label for="nombre1" class="formulario__label">Nombre del banco B</label>
+             <div class="formulario__grupo-input">
+               <input type="text" class="formulario__input" name="nombre1" id="nombre1" placeholder="Lola Mento">
+               <i class=" formulario__validacion-estado fas fa-times-circle"></i>
+             </div>
+              <p class="formulario__input-error">Solo use letras, nada de numeros o signos</p>
+          </div>
+  
+        <!-- Grupo: Monto -->
+        <div class="formulario__grupo" id="grupo__monto1">
+          <label for="monto1" class="formulario__label">Monto del credito</label>
+           <div class="formulario__grupo-input">
+             <input type="text" class="formulario__input" name="monto1" id="monto1" placeholder="$1000">
+             <i class=" formulario__validacion-estado fas fa-times-circle"></i>
+           </div>
+            <p class="formulario__input-error">El monto maximo de su credito puede ser $100.000.000 y un minimo de $1.000.000 (Solo numeros)</p>
+        </div>
+
+         <!-- Grupo: Numero de cuotas -->
+         <div class="formulario__grupo" id="grupo__ncuota1">
+            <label for="ncuota1" class="formulario__label">Numero de cuotas</label>
+             <div class="formulario__grupo-input">
+               <input type="text" class="formulario__input" name="ncuota1" id="ncuota1" placeholder="$1000">
+               <i class=" formulario__validacion-estado fas fa-times-circle"></i>
+             </div>
+              <p class="formulario__input-error">Su numero de cuotas debe estar entre las 2 a 48 cuotas</p>
+          </div>
+
+           <!-- Grupo: Seguro de desgravamen -->
+        <div class="formulario__grupo" id="grupo__seguro1">
+            <label for="seguro1" class="formulario__label">Seguro de desgravamen</label>
+             <div class="formulario__grupo-input">
+               <input type="text" class="formulario__input" name="seguro1" id="seguro1" placeholder="$1000">
+               <i class=" formulario__validacion-estado fas fa-times-circle"></i>
+             </div>
+              <p class="formulario__input-error">El seguro de desgravamen debe ser mayor o igual a $0</p>
+          </div>
+
+               <!-- Grupo: Cuotas -->
+        <div class="formulario__grupo" id="grupo__cuota1">
+          <label for="cuota1" class="formulario__label">Cuota mensual</label>
+           <div class="formulario__grupo-input">
+             <input type="text" class="formulario__input" name="cuota1" id="cuota1" placeholder="$1000">
+             <i class=" formulario__validacion-estado fas fa-times-circle"></i>
+           </div>
+            <p class="formulario__input-error">La cuota  mensual debe ser mayor a la suma de su monto mas el seguro, y todo esto dividido en el numero de cuotas</p>
+          </div>
+
+        <!-- IDEA: terminos y condiciones -->
+        <div class="formulario__grupo" id="grupo__terminos1">
+          <label class="formulario__label">
+          <input type="checkbox" class="formulario__checkbox"  name="terminos1" id="terminos1">
+          Completado
+        </label>
+        </div>
+        <div class="formulario__mensaje" id="formulario__mensaje1">
+          <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+        </div>
+  
+        <div class="formulario__grupo formulario__grupo-btn-enviar">
+          <button type="submit" class="formulario__btn" onclick="CAE1()" >CAE</button>
+          <label class="formulario__mensaje-exito" id="formulario__mensaje-exito1"> El valor CAE: </label><br>
+        </div>
+
+        <script>
+          function CAE1(){
+          var monto1= document.getElementById('monto1').value;   
+          var cuotas1= document.getElementById('cuota1').value;   
+          var ncuotas1= document.getElementById('ncuota1').value;   
+          var desg1 = document.getElementById('seguro1').value;   
+          var newcuota1= cuotas1-(desg1/ncuotas1);
+          var tasa1= formulajs.RATE(ncuotas1, newcuota1, (monto1)*-1);
+          var cae1= tasa1*1200;
+          localStorage.setItem('cae1',cae1.toFixed(2));
+          document.getElementById('formulario__mensaje-exito1').innerHTML
+                  = 'El valor CAE: ' + cae1.toFixed(2) + '%';
+          }
+      </script>
+      </form>
+  </div>
+   
+
+  
+      </main>
+
+      <!--Boton de comparacion-->
+      <form action="" id="formulario__final">
+      
+     
+
+        <div class="formulario__mensaje" id="formulario__mensaje2">
+          <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+        </div>
+     
+        <div class="formulario__grupo btn__comparar">
+          <button type="submit" class="btn__comparar-boton" onclick="respuesta()" >Comparar</button>
+          
+          <label class="formulario__mensaje-exito" id="formulario__mensaje-exito2"> Valor CAE: </label><br>
+        </div>
+
+     
+        
+        <script>
+       
+          function respuesta(){
+            if(localStorage.getItem('cae')>localStorage.getItem('cae1')){
+
+          document.getElementById('formulario__mensaje-exito2').innerHTML
+                  = 'El banco que mas le conviene es el '+ document.getElementById('nombre1').value;
+          }else{
+            document.getElementById('formulario__mensaje-exito2').innerHTML
+                  = 'El banco que mas le conviene es el '+ document.getElementById('nombre').value;
+          }
+          
+        }
+      
+        </script>
+
+      </form>
+
+      <div class="formulario__grupo btn__comparar">
+        <button type="botton" class="formulario__btn-borrar" onclick="borrar()" >Borrar</button>
+        
+        <label class="formulario__mensaje-exito" id="formulario__mensaje-exito2"> Valor CAE: </label><br>
+      </div>
+       
+      <script>
+           function borrar(){
+            location.reload();
+          }
+      </script>
+      <script src="formulario.js"></script>
+
+      <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jstat@1.9.2/dist/jstat.min.js"></script> 
+      <script src="https://cdn.jsdelivr.net/gh/formulajs/formulajs@2.5.0/dist/formula.min.js"></script>
+       </body>
+</html>
+
+
+
